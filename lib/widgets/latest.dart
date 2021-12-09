@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:netflixsample/models/consts.dart';
 import 'package:netflixsample/views/trandingdetailspage.dart';
@@ -35,6 +33,7 @@ class _LatestfetchingState extends State<Latestfetching> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List latestmovies = snapshot.data as List;
+            List rev = latestmovies.reversed.toList();
             return ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: latest.length,
@@ -90,41 +89,29 @@ class _LatestfetchingState extends State<Latestfetching> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => ToprateddetailPag(
-                          userselect: latestmovies,
+                          userselect: rev,
                           ind: ind,
                         ),
                       ),
                     );
                   },
                   child: SizedBox(
-                    width: 160,
+                    width: 145,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: [
                           Container(
-                            height: 200,
+                            height: 170,
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                   image: NetworkImage(
                                     'http://image.tmdb.org/t/p/w500' +
-                                        latestmovies[ind]['poster_path'],
+                                        rev[ind]['poster_path'],
                                   ),
                                   fit: BoxFit.cover),
                             ),
                           ),
-                          // Padding(
-                          //   padding: const EdgeInsets.only(bottom: 5, top: 5),
-                          //   child: Text(
-                          //     latestmovies[ind]['title'],
-                          //     style: const TextStyle(
-                          //         color: Colors.white,
-                          //         fontSize: 18,
-                          //         fontWeight: FontWeight.bold),
-                          //     maxLines: 1,
-                          //     overflow: TextOverflow.ellipsis,
-                          //   ),
-                          // )
                         ],
                       ),
                     ),

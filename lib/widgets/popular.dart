@@ -29,7 +29,7 @@ class _PopularfetchingState extends State<Popularmovier> {
 
   SizedBox movies() {
     return SizedBox(
-      height: 280,
+      height: 200,
       child: FutureBuilder(
         future: fetchPopular(),
         builder: (context, snapshot) {
@@ -61,13 +61,13 @@ class _PopularfetchingState extends State<Popularmovier> {
                           );
                         },
                         child: SizedBox(
-                          width: 170,
+                          width: 145,
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
                               children: [
                                 Container(
-                                  height: 230,
+                                  height: 170,
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
                                         image: NetworkImage(
@@ -84,7 +84,7 @@ class _PopularfetchingState extends State<Popularmovier> {
                       ),
                     ),
                     Positioned(
-                      top: 100,
+                      top: 80,
                       left: 5,
                       child: BorderedText(
                         strokeColor: Colors.white70,

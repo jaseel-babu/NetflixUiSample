@@ -48,163 +48,166 @@ class _UpcomingState extends State<Upcoming> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
-        child: NestedScrollView(
-          headerSliverBuilder: (context, innerBoxIsScrolled) {
-            return <Widget>[
-              SliverAppBar(
-                snap: true,
-                backgroundColor: Colors.black,
-                expandedHeight: 80.0,
-                floating: true,
-                pinned: false,
-                flexibleSpace: FlexibleSpaceBar(
-                  centerTitle: true,
-                  background: AppBar(
-                    backgroundColor: Colors.transparent,
-                    title: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          'Coming Soon',
-                        ),
-                        ListTile(
-                          leading: Icon(
-                            Icons.notifications_none,
-                            color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: NestedScrollView(
+            headerSliverBuilder: (context, innerBoxIsScrolled) {
+              return <Widget>[
+                SliverAppBar(
+                  snap: false,
+                  backgroundColor: Colors.black,
+                  expandedHeight: 80.0,
+                  floating: true,
+                  pinned: false,
+                  flexibleSpace: FlexibleSpaceBar(
+                    centerTitle: true,
+                    background: AppBar(
+                      backgroundColor: Colors.transparent,
+                      title: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          SizedBox(
+                            height: 20,
                           ),
-                          title: Text(
-                            'Notification',
-                            style: TextStyle(color: Colors.white),
+                          Text(
+                            'Coming Soon',
                           ),
-                          trailing: Icon(
-                            Icons.arrow_forward_ios_sharp,
-                            color: Colors.white,
+                          ListTile(
+                            leading: Icon(
+                              Icons.notifications_none,
+                              color: Colors.white,
+                            ),
+                            title: Text(
+                              'Notification',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            trailing: Icon(
+                              Icons.arrow_forward_ios_sharp,
+                              color: Colors.white,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
+                // SliverAppBar(
+                //   snap: true,
+                //   backgroundColor: Colors.black,
+                //   expandedHeight: 80.0,
+                //   floating: true,
+                //   pinned: true,
+                //   title: AppBar(
+                //     backgroundColor: Colors.transparent,
+                //     title: const ListTile(
+                //       leading: Icon(
+                //         Icons.notifications_none,
+                //         color: Colors.white,
+                //       ),
+                //       title: Text(
+                //         'Notification',
+                //         style: TextStyle(color: Colors.white),
+                //       ),
+                //       trailing: Icon(
+                //         Icons.arrow_forward_ios_sharp,
+                //         color: Colors.white,
+                //       ),
+                //     ),
+                //   ),
+                // ),
+              ];
+            },
+            body: SizedBox(
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height,
+              child: FutureBuilder(
+                future: fetchupcoming(),
+                builder: (context, snapshot) {
+                  Future.delayed(const Duration(seconds: 4), () {});
+                  // if (isLoading) {
+                  //   return buildEffect();
+                  // }
+                  if (snapshot.hasData) {
+                    List upcoming = snapshot.data as List;
+                    return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: upcoming.length,
+                        itemBuilder: (ctx, ind) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Stack(
+                                alignment: AlignmentDirectional.center,
+                                children: [
+                                  Container(
+                                    height: 180,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          image: NetworkImage(
+                                            'http://image.tmdb.org/t/p/w500' +
+                                                upcoming[ind]['backdrop_path'],
+                                          ),
+                                          fit: BoxFit.fill),
+                                    ),
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(30),
+                                        color: Colors.white),
+                                    child: const Icon(
+                                      Icons.play_arrow,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                upcoming[ind]['title'],
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                upcoming[ind]['release_date'],
+                                style: const TextStyle(
+                                    color: Colors.white70,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                upcoming[ind]['overview'],
+                                style: const TextStyle(
+                                    color: Colors.white70, fontSize: 18),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const Divider(
+                                thickness: 1.0,
+                                color: Colors.grey,
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          );
+                        });
+                  }
+                  return Container();
+                },
               ),
-              // SliverAppBar(
-              //   snap: true,
-              //   backgroundColor: Colors.black,
-              //   expandedHeight: 80.0,
-              //   floating: true,
-              //   pinned: true,
-              //   title: AppBar(
-              //     backgroundColor: Colors.transparent,
-              //     title: const ListTile(
-              //       leading: Icon(
-              //         Icons.notifications_none,
-              //         color: Colors.white,
-              //       ),
-              //       title: Text(
-              //         'Notification',
-              //         style: TextStyle(color: Colors.white),
-              //       ),
-              //       trailing: Icon(
-              //         Icons.arrow_forward_ios_sharp,
-              //         color: Colors.white,
-              //       ),
-              //     ),
-              //   ),
-              // ),
-            ];
-          },
-          body: SizedBox(
-            width: double.infinity,
-            height: MediaQuery.of(context).size.height,
-            child: FutureBuilder(
-              future: fetchupcoming(),
-              builder: (context, snapshot) {
-                Future.delayed(const Duration(seconds: 4), () {});
-                // if (isLoading) {
-                //   return buildEffect();
-                // }
-                if (snapshot.hasData) {
-                  List upcoming = snapshot.data as List;
-                  return ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: upcoming.length,
-                      itemBuilder: (ctx, ind) {
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Stack(
-                              alignment: AlignmentDirectional.center,
-                              children: [
-                                Container(
-                                  height: 180,
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: NetworkImage(
-                                          'http://image.tmdb.org/t/p/w500' +
-                                              upcoming[ind]['backdrop_path'],
-                                        ),
-                                        fit: BoxFit.fill),
-                                  ),
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(30),
-                                      color: Colors.white),
-                                  child: const Icon(
-                                    Icons.play_arrow,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              upcoming[ind]['title'],
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              upcoming[ind]['release_date'],
-                              style: const TextStyle(
-                                  color: Colors.white70,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              upcoming[ind]['overview'],
-                              style: const TextStyle(
-                                  color: Colors.white70, fontSize: 18),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            const Divider(
-                              thickness: 1.0,
-                              color: Colors.grey,
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                          ],
-                        );
-                      });
-                }
-                return Container();
-              },
             ),
           ),
         ),

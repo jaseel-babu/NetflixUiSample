@@ -33,6 +33,7 @@ class _HomePageState extends State<HomePage> {
       selectedIndex = index;
     });
   }
+
   // ignore: prefer_final_fields
 
   // @override
@@ -101,7 +102,24 @@ class _HomePageState extends State<HomePage> {
                           height: 30,
                         ),
                       ),
-                      actions: const [Icon(Icons.search)],
+                      actions: [
+                        const Icon(
+                          Icons.search,
+                          size: 30,
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.asset(
+                            'asstes/images/e39430434d2b8207188f880ac66c6411.png',
+                            // width: 30,
+                            height: 10,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -128,8 +146,7 @@ class _HomePageState extends State<HomePage> {
                           onTap: () async {
                             return showDialog<void>(
                               context: context,
-                              barrierDismissible:
-                                  false, // user must tap button!
+                              barrierDismissible: false,
                               builder: (BuildContext context) {
                                 return Scaffold(
                                   backgroundColor: Colors.transparent,
@@ -148,13 +165,23 @@ class _HomePageState extends State<HomePage> {
                                             const SizedBox(
                                               height: 50,
                                             ),
-                                            Text(
-                                              categories[index],
-                                              style: const TextStyle(
-                                                  color: Colors.white70,
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.w600),
-                                            ),
+                                            categories[index] == "Home"
+                                                ? Text(
+                                                    categories[index],
+                                                    style: const TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 22,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  )
+                                                : Text(
+                                                    categories[index],
+                                                    style: const TextStyle(
+                                                        color: Colors.white70,
+                                                        fontSize: 20,
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  ),
                                             const SizedBox(
                                               height: 10,
                                             ),
@@ -169,7 +196,7 @@ class _HomePageState extends State<HomePage> {
                                       Navigator.pop(context);
                                     },
                                     child: const Icon(
-                                      Icons.cancel_presentation_sharp,
+                                      Icons.close,
                                       color: Colors.black,
                                     ),
                                   ),
@@ -236,7 +263,7 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         child: Image.network(
                                           'http://image.tmdb.org/t/p/w500' +
-                                              topratedmovies[7]['poster_path'],
+                                              topratedmovies[8]['poster_path'],
                                           fit: BoxFit.cover,
                                         ),
                                       ),
@@ -277,8 +304,9 @@ class _HomePageState extends State<HomePage> {
                                           List topratedmovies =
                                               snapshot.data as List;
                                           return Text(
-                                            topratedmovies[7]['title'],
+                                            topratedmovies[8]['title'],
                                             style: const TextStyle(
+                                              fontFamily: "Georgia",
                                               color: Colors.white,
                                               fontSize: 40,
                                               fontWeight: FontWeight.w900,
@@ -392,32 +420,26 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         movie,
-                        const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            'Top Ten ',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.start,
-                          ),
+                        const Text(
+                          'Top Ten ',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.start,
                         ),
                         _popularmovier,
-                        const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            'Only On Netflix ',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.start,
-                          ),
+                        const Text(
+                          'Only On Netflix ',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.start,
                         ),
                         latest,
                         const SizedBox(
-                          height: 70,
+                          height: 50,
                         ),
                       ],
                     ),
@@ -467,7 +489,7 @@ class _HomePageState extends State<HomePage> {
     List<Widget> _widgetOption = [
       scrollappbar(),
       Upcoming(),
-      Upcoming(),
+      // Upcoming(),
       DownloadPage(),
       FaceLaughs(),
     ];
@@ -497,12 +519,12 @@ class _HomePageState extends State<HomePage> {
               Icons.home,
             ),
           ),
-          BottomNavigationBarItem(
-            label: "Serach",
-            icon: Icon(
-              Icons.search,
-            ),
-          ),
+          // BottomNavigationBarItem(
+          //   label: "Serach",
+          //   icon: Icon(
+          //     Icons.search,
+          //   ),
+          // ),
           BottomNavigationBarItem(
             label: "Upcoming",
             icon: Icon(Icons.ondemand_video_sharp),

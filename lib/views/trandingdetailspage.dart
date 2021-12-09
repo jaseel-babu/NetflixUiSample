@@ -39,151 +39,156 @@ class _ToprateddetailPagState extends State<ToprateddetailPag> {
         ],
       ),
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              alignment: AlignmentDirectional.center,
-              children: [
-                Container(
-                  height: 190,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: NetworkImage(
-                          'http://image.tmdb.org/t/p/w500' +
-                              widget.userselect[widget.ind]['backdrop_path'],
-                        ),
-                        fit: BoxFit.fill),
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Stack(
+                alignment: AlignmentDirectional.center,
+                children: [
+                  Container(
+                    height: 190,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: NetworkImage(
+                            'http://image.tmdb.org/t/p/w500' +
+                                widget.userselect[widget.ind]['backdrop_path'],
+                          ),
+                          fit: BoxFit.fill),
+                    ),
                   ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Colors.white),
-                  child: const Icon(
-                    Icons.play_arrow,
-                    color: Colors.black,
-                  ),
-                )
-              ],
-            ),
-            Text(
-              widget.userselect[widget.ind]['title'],
-              style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-            Text(
-              widget.userselect[widget.ind]['release_date'],
-              style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                width: double.infinity,
-                height: 40,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(
-                        Icons.play_arrow,
-                        color: Colors.black,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Play',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                    ],
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.white),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                width: double.infinity,
-                height: 40,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(
-                        Icons.download,
-                        color: Colors.white,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Download',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ],
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all(Colors.grey[900]),
-                  ),
-                ),
-              ),
-            ),
-            Text(
-              widget.userselect[widget.ind]['overview'],
-              style: const TextStyle(color: Colors.white70, fontSize: 18),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Container(
-              width: 120,
-              height: 30,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10), color: Colors.red),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: const [
-                  Icon(
-                    Icons.thumb_up,
-                    color: Colors.white,
-                  ),
-                  Text(
-                    "Most Liked",
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: Colors.white),
+                    child: const Icon(
+                      Icons.play_arrow,
+                      color: Colors.black,
+                    ),
+                  )
                 ],
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                buttons(Icons.add, 'My List'),
-                buttons(Icons.thumb_up, 'Rate'),
-                buttons(Icons.share, 'Share'),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const Divider(
-              color: Colors.grey,
-              thickness: 1,
-            )
-          ],
+              Text(
+                widget.userselect[widget.ind]['title'],
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
+              Text(
+                widget.userselect[widget.ind]['release_date'],
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 40,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(
+                          Icons.play_arrow,
+                          color: Colors.black,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'Play',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ],
+                    ),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 40,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(
+                          Icons.download,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'Download',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    ),
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.grey[900]),
+                    ),
+                  ),
+                ),
+              ),
+              Text(
+                widget.userselect[widget.ind]['overview'],
+                style: const TextStyle(color: Colors.white70, fontSize: 18),
+                maxLines: 6,
+                overflow: TextOverflow.ellipsis,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Container(
+                width: 120,
+                height: 30,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10), color: Colors.red),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: const [
+                    Icon(
+                      Icons.thumb_up,
+                      color: Colors.white,
+                    ),
+                    Text(
+                      "Most Liked",
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  buttons(Icons.add, 'My List'),
+                  buttons(Icons.thumb_up, 'Rate'),
+                  buttons(Icons.share, 'Share'),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const Divider(
+                color: Colors.grey,
+                thickness: 1,
+              )
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
