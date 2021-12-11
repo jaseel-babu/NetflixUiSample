@@ -29,9 +29,11 @@ class _HomePageState extends State<HomePage> {
   Latestfetching latest = const Latestfetching();
   int selectedIndex = 0;
   onItemTapped(int index) {
-    setState(() {
-      selectedIndex = index;
-    });
+    setState(
+      () {
+        selectedIndex = index;
+      },
+    );
   }
 
   // ignore: prefer_final_fields
@@ -84,6 +86,7 @@ class _HomePageState extends State<HomePage> {
             headerSliverBuilder: (context, innerBoxIsScrolled) {
               return <Widget>[
                 SliverAppBar(
+                  excludeHeaderSemantics: true,
                   snap: true,
                   backgroundColor: Colors.transparent,
                   // expandedHeight: 80.0,

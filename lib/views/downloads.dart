@@ -99,8 +99,8 @@ class _DownloadPageState extends State<DownloadPage> {
                       return Container();
                     }),
                 const Divider(
-                  color: Colors.white,
-                  thickness: 0.5,
+                  color: Colors.grey,
+                  thickness: 0.3,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -149,7 +149,7 @@ class _DownloadPageState extends State<DownloadPage> {
                                       const AlwaysStoppedAnimation(-15 / 360),
                                   child: Container(
                                     height: 180,
-                                    width: 130,
+                                    width: 150,
                                     decoration: BoxDecoration(
                                       image: DecorationImage(
                                           image: NetworkImage(
@@ -241,7 +241,7 @@ class _DownloadPageState extends State<DownloadPage> {
                 'http://image.tmdb.org/t/p/w500' +
                     popular[index]['poster_path'],
               ),
-              fit: BoxFit.cover),
+              fit: BoxFit.fill),
         ),
       ),
       title: Text(

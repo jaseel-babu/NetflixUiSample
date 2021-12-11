@@ -129,81 +129,70 @@ class _UpcomingState extends State<Upcoming> {
                   // }
                   if (snapshot.hasData) {
                     List upcoming = snapshot.data as List;
-                    return ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: upcoming.length,
-                        itemBuilder: (ctx, ind) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Stack(
-                                alignment: AlignmentDirectional.center,
-                                children: [
-                                  Container(
-                                    height: 180,
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          image: NetworkImage(
-                                            'http://image.tmdb.org/t/p/w500' +
-                                                upcoming[ind]['backdrop_path'],
-                                          ),
-                                          fit: BoxFit.fill),
-                                    ),
+                    return PageView.builder(
+                      scrollBehavior: ScrollBehavior(
+                          androidOverscrollIndicator:
+                              AndroidOverscrollIndicator.glow),
+                      scrollDirection: Axis.vertical,
+                      itemCount: upcoming.length,
+                      itemBuilder: (ctx, ind) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Stack(
+                              alignment: AlignmentDirectional.center,
+                              children: [
+                                Container(
+                                  height: 180,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: NetworkImage(
+                                          'http://image.tmdb.org/t/p/w500' +
+                                              upcoming[ind]['backdrop_path'],
+                                        ),
+                                        fit: BoxFit.fill),
                                   ),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(30),
-                                        color: Colors.white),
-                                    child: const Icon(
-                                      Icons.play_arrow,
-                                      color: Colors.black,
-                                    ),
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(30),
+                                      color: Colors.white),
+                                  child: const Icon(
+                                    Icons.play_arrow,
+                                    color: Colors.black,
                                   ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                upcoming[ind]['title'],
-                                style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                upcoming[ind]['release_date'],
-                                style: const TextStyle(
-                                    color: Colors.white70,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                upcoming[ind]['overview'],
-                                style: const TextStyle(
-                                    color: Colors.white70, fontSize: 18),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              const Divider(
-                                thickness: 1.0,
-                                color: Colors.grey,
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                            ],
-                          );
-                        });
+                                ),
+                              ],
+                            ),
+                            Text(
+                              upcoming[ind]['title'],
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              upcoming[ind]['release_date'],
+                              style: const TextStyle(
+                                  color: Colors.white70,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                            Text(
+                              upcoming[ind]['overview'],
+                              style: const TextStyle(
+                                  color: Colors.white70, fontSize: 18),
+                            ),
+                            const Divider(
+                              thickness: 1.0,
+                              color: Colors.grey,
+                            ),
+                          ],
+                        );
+                      },
+                    );
                   }
                   return Container();
                 },
